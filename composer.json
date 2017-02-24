@@ -1,0 +1,25 @@
+{
+    "name": "astritzeqiri/laravel-searchable",
+    "description": "A php trait for searching on laravel eloquent models",
+    "type": "laravel-plugin",
+    "keywords": ["search", "laravel", "larave-search"],
+    "homepage": "https://github.com/astritzeqiri/laravel-searchable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Astrit Zeqiri",
+            "email": "astritzeqiri5@gmail.com",
+            "homepage": "http://astritzeqiri.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AstritZeqiri\\Metadata\\": "src/"
+        }
+    }
+}
