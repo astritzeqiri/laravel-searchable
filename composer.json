@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AstritZeqiri\\Metadata\\": "src/"
+            "AstritZeqiri\\LaravelSearchable\\": "src/"
         }
     }
 }
