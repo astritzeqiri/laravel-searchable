@@ -2,6 +2,7 @@
 
 namespace AstritZeqiri\LaravelSearchable\Traits;
 
+use AstritZeqiri\LaravelSearchable\Search;
 use AstritZeqiri\LaravelSearchable\Exceptions\SearchException;
 
 trait Searchable
