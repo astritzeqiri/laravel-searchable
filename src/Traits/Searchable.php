@@ -12,7 +12,7 @@ trait Searchable
      * 
      * @param  Illuminate\Database\Eloquent\Builder  $query
      * @param  string  $search
-     * @param  array   $fields
+     * @param  array|string   $fields
      * @param  boolean $exact
      *
      * @throws SearchException [if the search fields are not set on the model or they are not given on the method] 
@@ -24,18 +24,10 @@ trait Searchable
             return $query;
         }
 
-        if (! $fields && ! property_exists(static::class, 'searchOn')) {
-            throw SearchException::searchOnOrFieldsNotFound();
-        }
-
-        $fields = $fields ?: static::$searchOn;
-        
-        if (! is_array($fields)) {
-            $fields = [$fields];
-        }
+        $fields = $this->resolveSearchFields($fields);
 
         if (empty($fields)) {
-            return $query;
+            throw SearchException::searchOnOrFieldsNotFound();
         }
 
         return (new Search($query))
@@ -44,5 +36,31 @@ trait Searchable
                         ->onFields($fields)
                         ->exactSearch($exact)
                         ->build();
+    }
+
+    /**
+     * Resolve the fields that should be searched on.
+     * The fields are given as an array or declared
+     * on the model as $searchOn property.
+     * 
+     * @param  array|string  $fields
+     * 
+     * @return array
+     */
+    private function resolveSearchFields($fields = [])
+    {
+        if (is_array($fields)) {
+            return $fields;
+        }
+
+        if (is_string($fields)) {
+            return [$fields];
+        }
+
+        if (property_exists(static::class, 'searchOn')) {
+            return is_array(static::$searchOn) ? static::$searchOn : [static::$searchOn];
+        }
+
+        return [];
     }
 }
