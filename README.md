@@ -104,3 +104,6 @@ class User extends Model
 }
 
 ```
+
+## License
+[MIT](http://opensource.org/licenses/MIT)
