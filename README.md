@@ -1,4 +1,4 @@
-# Laravel Meta data
+# Laravel Searchable
 
 A php trait for searching on laravel eloquent models
 
